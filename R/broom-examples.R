@@ -48,3 +48,13 @@ tidy(logistic_model, conf.int = TRUE, exponentiate = TRUE) |>
 	geom_errorbar() +
 	facet_grid(cols = vars(variable), scales = "free", space = "free") +
 	scale_y_log10()
+
+## using broom::tidy()
+eyes_binomial_model <- glm(glasses ~ eyesight_cat + sex_cat,
+													 data = nlsy, family = binomial(link = "log"))
+eyes_poisson_model <- glm(glasses ~ eyesight_cat + sex_cat,
+													data = nlsy, family = poisson(link = "log"))
+eyes_binomial_table <- tbl_regression(eyes_binomial_model,
+																			exponentiate= TRUE)
+eyes_poission_table <- tbl_regression(eyes_poisson_model,
+																			exponentiate= TRUE)
