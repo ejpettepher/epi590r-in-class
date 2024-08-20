@@ -1,13 +1,13 @@
 ---
 title: "gtsummary in quarto"
-format: html
+format: docx
 execute:
-  echo: false
   warning: false
   messages: false
 ---
 
 ```{r}
+#| echo: false
 library(tidyverse)
 library(gtsummary)
 nlsy_cols <- c("glasses", "eyesight", "sleep_wkdy", "sleep_wknd", 
@@ -26,6 +26,7 @@ nlsy <- read_csv(here::here("data", "raw", "nlsy.csv"),
 # Customization of `tbl_summary()`
 
 ```{r}
+#| echo: false
 tbl_summary(
   nlsy,
   by = sex_cat,
@@ -34,6 +35,7 @@ tbl_summary(
 ```
 
 ```{r}
+#| echo: false
 tbl_summary(
   nlsy,
   by = sex_cat,
@@ -49,14 +51,24 @@ tbl_summary(
   missing_text = "Missing")
 ```
 
-**Added Code**
+# Added Code
 
 ```{r}
+#| error: true
+tbl_summary(
+  NLSY,
+  by = sex_cat,
+  include = c(sex_cat, race_eth_cat, region_cat,
+              eyesight_cat, glasses, age_bir))
+```
+*The mistake in the code was that "NSLY" is not an object in our environment, "nsly" is though*
+
+# Corrected Code
+```{r}
+#| echo: false
 tbl_summary(
   nlsy,
   by = sex_cat,
   include = c(sex_cat, race_eth_cat, region_cat,
               eyesight_cat, glasses, age_bir))
-#|  eval: false
 ```
-*The mistake in the code was that "NSLY" is not an object in our environment, "nsly" is though*
