@@ -1,6 +1,6 @@
 ---
 title: "gtsummary in quarto"
-format: docx
+format: html
 execute:
   warning: false
   messages: false
@@ -66,9 +66,36 @@ tbl_summary(
 # Corrected Code
 ```{r}
 #| echo: false
+#| label: tbl-1
+#| tbl-cap: "Table of outcomes by sex"
 tbl_summary(
   nlsy,
   by = sex_cat,
   include = c(sex_cat, race_eth_cat, region_cat,
               eyesight_cat, glasses, age_bir))
 ```
+Notice that @tbl-1 is a table
+```{r}
+#| echo: false
+avg_sleep_wknd<- mean(nlsy$sleep_wknd, na.rm=TRUE)
+print(avg_sleep_wknd)
+```
+The average sleep on the weekends is `r avg_sleep_wknd`
+The average hours of sleep on the weekends was `r mean(nlsy$sleep_wknd, na.rm=TRUE)`
+
+# Practicing inline_text() function
+```{r}
+#| eval: true
+#| label: tbl-descr
+#| tbl-cap: "Descriptive statistics"
+table1 <- tbl_summary(
+  nlsy,
+  by = sex_cat,
+  include = c(sex_cat, race_eth_cat, region_cat,
+              eyesight_cat, glasses, age_bir, sleep_wknd)) |> 
+  add_overall(last = TRUE)
+table1
+mdn_hrs_sleep<- inline_text(table1, variable = "sleep_wknd", column = "stat_0")
+
+```
+The median hours of sleep was `r mdn_hrs_sleep`
