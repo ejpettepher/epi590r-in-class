@@ -1,0 +1,43 @@
+---
+title: "Test FIile"
+author: "Ethan"
+format: html
+editor: visual
+execute:
+  eval: true
+  echo: false
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 2
+AM <- 1
+EP <- 2
+BESTIES <- 3
+AM + EP 
+if (AM + EP ==3) {
+	print("Besties")
+}
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+#| error: true 
+
+x + y + z
+```
