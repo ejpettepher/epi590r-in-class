@@ -99,3 +99,4 @@ mdn_hrs_sleep<- inline_text(table1, variable = "sleep_wknd", column = "stat_0")
 
 ```
 The median hours of sleep was `r mdn_hrs_sleep`
+
